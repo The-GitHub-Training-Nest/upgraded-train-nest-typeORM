@@ -1,4 +1,5 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
+import { NotFoundError } from 'rxjs';
 import { Course } from 'src/entities/course.entity';
 
 @Injectable() // uma instância sendo injetada em outra classe, no contrutor do controller; para que o serviço possa ser utilizado com os métodos a serem utilizados;
@@ -19,8 +20,12 @@ export class CoursesService {
   }
 
   // Método que retorna um curso específico;
-  findOne(id: number): Course {
-    return this.courses.find(course => course.id === id);
+  findOne(id: any) {
+    const course = this.courses.find((course: Course) => course.id == id);
+    if (!course){
+      throw new NotFoundException('Course not found');
+    }
+    return course;
   }
 
   // Método que cria um novo curso;
