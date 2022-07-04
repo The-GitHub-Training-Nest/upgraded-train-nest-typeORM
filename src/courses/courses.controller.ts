@@ -12,32 +12,32 @@ export class CoursesController {
   ) {}
 
   @Get('')
-  findAll(@Res() response) {
+  findAll() {
     // Response é um objeto que permite que o servidor envie dados para o cliente;
-    return response.Status(HttpStatus.OK).send(`This action returns all courses`);
+    return this.coursesService.findAll();
   }
 
   @Get('/:id')
   @HttpCode(HttpStatus.OK)
-  findOne(@Param(`id`) id): string {
-    return `This action returns a #${id} course`;
+  findOne(@Param(`id`) id) {
+    return this.coursesService.findOne(id);
   }
 
   @Post('') // 201 -> OK que foi criado com sucesso a informação;
   // Estático;
   @HttpCode(HttpStatus.NO_CONTENT) // Foi criado, mas ele não consomeu nenhum dado que foi retornado; Nenhum conteúdo no retorno;
-  create(@Body('name') body): string {
-    return body;
+  create(@Body('name') body) {
+    return this.coursesService.create(body);
   }
 
   @Delete('')
-  delete(@Param('id') id: string): string {
-    return `This action deletes a #${id} course`;
+  delete(@Param('id') id) {
+    return this.coursesService.delete(id);
   }
 
   @Put('')
-  update(): string {
-    return `This action updates a course`;
+  update(@Param("id") id, @Body() body) {
+    return this.coursesService.update(id, body)
   }
 
 }
