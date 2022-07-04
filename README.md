@@ -29,10 +29,14 @@
 ## Installation Yarn
 
 ```bash
+# add the GPG key
 $ curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+# add the yarn repository
 $ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+# update the system and install yarn on Ubuntu
 $ sudo apt update
 $ sudo apt install yarn
+# check out yarn's version
 $ yarn –version
 ```
 
@@ -53,6 +57,12 @@ $ yarn start:dev
 
 # production mode
 $ yarn start:prod
+```
+
+## Build the app
+
+```bash
+$ nest build
 ```
 
 ## Test
