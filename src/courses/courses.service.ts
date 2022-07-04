@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { Course } from 'src/entities/course.entity';
 
-@Injectable()
+@Injectable() // uma instância sendo injetada em outra classe, no contrutor do controller; para que o serviço possa ser utilizado com os métodos a serem utilizados;
 export class CoursesService {
-  // Primeiro registro pré-definido;
+  // registro pré-definido;
   private courses: Course[] = [
     { id: 1, name: 'course1', description: 'course1 description', tags: ['tag1', 'tag2'] },
     { id: 2, name: 'course2', description: 'course2 description', tags: ['tag1', 'tag2'] },
@@ -11,6 +11,7 @@ export class CoursesService {
   ];
 
   // Métodos que irão manipular a estrutura de dados acima;
+  // Regras de negócio;
 
   // Método que retorna todos os cursos;
   findAll(): Course[] {
@@ -23,17 +24,21 @@ export class CoursesService {
   }
 
   // Método que cria um novo curso;
-  create(course: Course): Course {
-    course.id = this.courses.length + 1;
-    this.courses.push(course);
-    return course;
+  // createCouseDTO -> É uma estrutura onde eu defino informações que eu vou tranferir entre sistemas, entre aplicações; vão ser enviadas para o servidor;
+  // O servidor vai receber essas informações e vai criar um novo curso;
+  // Aplicação Cliente (Frontend) está enviando para a minha aplicação (Backend) uma estrutura de dados com o intuito de aramazenar informações;
+  create(createCourseDTO: Course): Course {
+    createCourseDTO.id = this.courses.length + 1;
+    this.courses.push(createCourseDTO);
+    return createCourseDTO;
   }
 
   // Método que atualiza um curso;
-  update(id: number, course: Course): Course {
-    const index = this.courses.findIndex(course => course.id === id);
-    this.courses[index] = course;
-    return course;
+  update(id: number, updateCourseDTO: Course): Course {
+    const indexCourse = this.courses.findIndex(course => course.id === id);
+    this.courses[indexCourse] = updateCourseDTO;
+
+    return updateCourseDTO;
   }
 
   // Método que deleta um curso;
@@ -65,3 +70,7 @@ export class CoursesService {
   }
 
 }
+function remove(id: number, string: any) {
+  throw new Error('Function not implemented.');
+}
+
