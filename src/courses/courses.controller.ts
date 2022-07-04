@@ -17,16 +17,16 @@ export class CoursesController {
     return this.coursesService.findAll();
   }
 
-  @Get('/:id')
+  @Get(':id')
   @HttpCode(HttpStatus.OK)
-  findOne(@Param(`id`) id) {
+  findOne(@Param(`id`) id: any) {
     return this.coursesService.findOne(id);
   }
 
   @Post('') // 201 -> OK que foi criado com sucesso a informação;
   // Estático;
   @HttpCode(HttpStatus.NO_CONTENT) // Foi criado, mas ele não consomeu nenhum dado que foi retornado; Nenhum conteúdo no retorno;
-  create(@Body('name') body) {
+  create(@Body() body) {
     return this.coursesService.create(body);
   }
 
@@ -36,7 +36,7 @@ export class CoursesController {
   }
 
   @Put('')
-  update(@Param("id") id, @Body() body) {
+  update(@Param("id") id: number, @Body() body) {
     return this.coursesService.update(id, body)
   }
 
