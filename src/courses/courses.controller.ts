@@ -1,4 +1,6 @@
 import { Controller, Param, Body, Get, Post, Delete, Put, HttpCode, HttpStatus, Res } from '@nestjs/common';
+import { CreateCourseDto } from 'src/dto/create-course.dto';
+import { UpdateCourseDto } from 'src/dto/update-course.dto';
 import { CoursesService } from './courses.service';
 
 // Body: src/courses/courses.controller.ts -> Configura o objeto com os dados do corpo da requisição;
@@ -23,11 +25,18 @@ export class CoursesController {
     return this.coursesService.findOne(id);
   }
 
+  // @Post('') // 201 -> OK que foi criado com sucesso a informação;
+  // // Estático;
+  // @HttpCode(HttpStatus.NO_CONTENT) // Foi criado, mas ele não consomeu nenhum dado que foi retornado; Nenhum conteúdo no retorno;
+  // create(@Body() body) {
+  //   return this.coursesService.create(body);
+  // }
+
   @Post('') // 201 -> OK que foi criado com sucesso a informação;
   // Estático;
   @HttpCode(HttpStatus.NO_CONTENT) // Foi criado, mas ele não consomeu nenhum dado que foi retornado; Nenhum conteúdo no retorno;
-  create(@Body() body) {
-    return this.coursesService.create(body);
+  create(@Body() createCourseDto: CreateCourseDto) {
+    return this.coursesService.create(createCourseDto);
   }
 
   @Delete('')
@@ -36,8 +45,8 @@ export class CoursesController {
   }
 
   @Put('')
-  update(@Param("id") id: number, @Body() body) {
-    return this.coursesService.update(id, body)
+  update(@Param("id") id: number, @Body() updateCourseDto: UpdateCourseDto) {
+    return this.coursesService.update(id, updateCourseDto)
   }
 
 }
