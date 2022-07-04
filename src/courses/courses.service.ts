@@ -39,8 +39,8 @@ export class CoursesService {
   }
 
   // Método que atualiza um curso;
-  update(id: number, updateCourseDTO: Course): Course {
-    const indexCourse = this.courses.findIndex(course => course.id === id);
+  update(id: any, updateCourseDTO) {
+    const indexCourse = this.courses.findIndex((course: Course) => course.id === id);
     this.courses[indexCourse] = updateCourseDTO;
 
     return updateCourseDTO;
