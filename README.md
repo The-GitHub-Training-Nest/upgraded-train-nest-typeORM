@@ -40,7 +40,13 @@ $ sudo apt install yarn
 $ yarn –version
 ```
 
-## Installation
+## Clone the Project
+
+```bash
+$ git clone https://github.com/The-GitHub-Training-Nest/upgraded-train-nest-prisma.git
+```
+
+## Installation the Project
 
 ```bash
 $ yarn install
