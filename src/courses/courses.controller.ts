@@ -1,10 +1,15 @@
 import { Controller, Param, Body, Get, Post, Delete, Put, HttpCode, HttpStatus, Res } from '@nestjs/common';
+import { CoursesService } from './courses.service';
 
 // Body: src/courses/courses.controller.ts -> Configura o objeto com os dados do corpo da requisição;
 // conter dados de um objeto; enviar dados de um formulário com 4, 5 informações que vão estar dentro de um objeto
 
 @Controller('courses') // Endpoint (courses)
 export class CoursesController {
+
+  constructor(
+    private readonly coursesService: CoursesService, // Responssável por receber a instância do nosso serviço; é um container;
+  ) {}
 
   @Get('')
   findAll(@Res() response) {
