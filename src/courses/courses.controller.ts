@@ -1,4 +1,4 @@
-import { Controller, Param, Body, Get, Post, Delete, Put, HttpCode, HttpStatus } from '@nestjs/common';
+import { Controller, Param, Body, Get, Post, Delete, Put, HttpCode, HttpStatus, Res } from '@nestjs/common';
 
 // Body: src/courses/courses.controller.ts -> Configura o objeto com os dados do corpo da requisição;
 // conter dados de um objeto; enviar dados de um formulário com 4, 5 informações que vão estar dentro de um objeto
@@ -7,8 +7,8 @@ import { Controller, Param, Body, Get, Post, Delete, Put, HttpCode, HttpStatus }
 export class CoursesController {
 
   @Get('')
-  findAll(): string {
-    return `This action returns all courses`;
+  findAll(@Res() response): string {
+    return response.Status(HttpStatus.OK).send(`This action returns all courses`);
   }
 
   @Get('/:id')
