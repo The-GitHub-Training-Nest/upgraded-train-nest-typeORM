@@ -8,6 +8,7 @@ export class CoursesController {
 
   @Get('')
   findAll(@Res() response): string {
+    // Response é um objeto que permite que o servidor envie dados para o cliente;
     return response.Status(HttpStatus.OK).send(`This action returns all courses`);
   }
 
