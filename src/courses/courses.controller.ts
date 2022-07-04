@@ -7,7 +7,7 @@ import { Controller, Param, Body, Get, Post, Delete, Put, HttpCode, HttpStatus, 
 export class CoursesController {
 
   @Get('')
-  findAll(@Res() response): string {
+  findAll(@Res() response) {
     // Response é um objeto que permite que o servidor envie dados para o cliente;
     return response.Status(HttpStatus.OK).send(`This action returns all courses`);
   }
@@ -26,8 +26,8 @@ export class CoursesController {
   }
 
   @Delete('')
-  delete(): string {
-    return `This action deletes a course`;
+  delete(@Param('id') id: string): string {
+    return `This action deletes a #${id} course`;
   }
 
   @Put('')
