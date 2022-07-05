@@ -1,6 +1,7 @@
 import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { NotFoundError } from 'rxjs';
+import { CreateCourseDto } from 'src/dto/create-course.dto';
 import { Course } from 'src/entities/course.entity';
 import { Repository } from 'typeorm';
 
@@ -40,10 +41,9 @@ export class CoursesService {
   // createCouseDTO -> É uma estrutura onde eu defino informações que eu vou tranferir entre sistemas, entre aplicações; vão ser enviadas para o servidor;
   // O servidor vai receber essas informações e vai criar um novo curso;
   // Aplicação Cliente (Frontend) está enviando para a minha aplicação (Backend) uma estrutura de dados com o intuito de aramazenar informações;
-  create(createCourseDTO: Course): Course {
-    createCourseDTO.id = this.courses.length + 1;
-    this.courses.push(createCourseDTO);
-    return createCourseDTO;
+  create(createCourseDTO: CreateCourseDto) {
+    const course = this.courseRepository.create(createCourseDTO);
+    return this.courseRepository.save(course);
   }
 
   // Método que atualiza um curso;
