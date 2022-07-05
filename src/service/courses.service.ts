@@ -1,9 +1,17 @@
 import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { NotFoundError } from 'rxjs';
 import { Course } from 'src/entities/course.entity';
+import { Repository } from 'typeorm';
 
 @Injectable() // uma instância sendo injetada em outra classe, no contrutor do controller; para que o serviço possa ser utilizado com os métodos a serem utilizados;
 export class CoursesService {
+
+  constructor (
+    @InjectRepository(Course)
+    private readonly courseRepository: Repository<Course>,
+  ) {}
+
   // registro pré-definido;
   private courses: Course[] = [
     { id: 1, name: 'course1', description: 'course1 description', tags: ['tag1', 'tag2'] },
@@ -15,13 +23,13 @@ export class CoursesService {
   // Regras de negócio;
 
   // Método que retorna todos os cursos;
-  findAll(): Course[] {
-    return this.courses;
+  findAll() {
+    return this.courseRepository.find();
   }
 
   // Método que retorna um curso específico;
   findOne(id: any) {
-    const course = this.courses.find((course: Course) => course.id == id);
+    const course = this.courseRepository.find(id);
     if (!course){
       throw new NotFoundException('Course not found');
     }
