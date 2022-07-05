@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, ValidationOptions } from "class-validator";
+import { IsNotEmpty, IsString } from "class-validator";
 
 export class CreateCourseDto {
 
