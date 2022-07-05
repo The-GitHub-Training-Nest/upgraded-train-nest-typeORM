@@ -1,4 +1,4 @@
-import { Controller, Param, Body, Get, Post, Delete, Put, HttpCode, HttpStatus, Res } from '@nestjs/common';
+import { Controller, Param, Body, Get, Post, Delete, Put, HttpCode, HttpStatus } from '@nestjs/common';
 import { CreateCourseDto } from 'src/dto/create-course.dto';
 import { UpdateCourseDto } from 'src/dto/update/update-course.dto';
 import { CoursesService } from '../service/courses.service';
