@@ -1,6 +1,5 @@
 import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { NotFoundError } from 'rxjs';
 import { CreateCourseDto } from 'src/dto/create-course.dto';
 import { Course } from 'src/entities/course.entity';
 import { Repository } from 'typeorm';
